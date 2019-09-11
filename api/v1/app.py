@@ -8,10 +8,12 @@ app = Flask(__name__)
 
 app.register_blueprint(app_views)
 
+
 @app.teardown_appcontext
 def teardown(self):
     """ function to close storage """
     storage.close()
+
 
 @app.errorhandler(404)
 def pagenotfound(e):
