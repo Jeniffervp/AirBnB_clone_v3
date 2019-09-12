@@ -43,7 +43,7 @@ def del_user(user_id):
 @app_views.route("/users", methods=['POST'])
 def post_user():
     """ update user """
-    if not request.get_json():
+    if not request.get_json:
         return jsonify({"error": "Not a JSON"}), 400
     req = request.get_json()
     if "email" not in req:
