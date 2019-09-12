@@ -67,7 +67,6 @@ def post_place(city_id):
     if "name" not in req:
         return jsonify({"error": "Missing name"}), 400
 
-
     ct = storage.get("City", city_id)
     if ct is None:
         abort(404)
