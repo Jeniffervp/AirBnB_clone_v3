@@ -113,3 +113,24 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json", "r") as f:
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
+
+
+class TestFiletorage_new(unittest.TestCase):
+    """ Test the functions get and count """
+    def test_get(self):
+        """ test if the queris are right """
+        stat = State(name="Utah")
+        models.storage.new(stat)
+        models.storage.save()
+        get_id = models.storage.all("State").values()
+        dicti = models.storage.get("State", stat.id)
+        self.assertTrue(dicti, get_id)
+
+    def test_count(self):
+        """ Test the number of objects in storage matching """
+        stat = State(name="Utah")
+        models.storage.new(stat)
+        models.storage.save()
+        number = len(models.storage.all("State"))
+        counter = models.storage.count("State")
+        self.assertTrue(number, counter)
