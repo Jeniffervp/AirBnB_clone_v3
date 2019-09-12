@@ -16,8 +16,8 @@ def amenity_id(amenity_id=None):
     my_dict = []
     am = {}
     if amenity_id is None:
-        st = storage.all("Amenity")
-        for i in st.values():
+        am = storage.all("Amenity")
+        for i in am.values():
             my_dict.append(i.to_dict())
         return jsonify(my_dict)
     am = storage.get("Amenity", amenity_id)
@@ -31,11 +31,11 @@ def amenity_id(amenity_id=None):
 def del_amenity(amenity_id):
     """ delete amenities """
     my_dict = []
-    st = {}
-    st = storage.get("Amenity", amenity_id)
-    if st is None:
+    am = {}
+    am = storage.get("Amenity", amenity_id)
+    if am is None:
         abort(404)
-    st.delete()
+    am.delete()
     storage.save()
     return jsonify({}), 200
 
@@ -69,4 +69,4 @@ def put_amenity(amenity_id):
         if k not in ign:
             setattr(am, k, v)
     am.save()
-    return jsonify(ct.to_dict()), 200
+    return jsonify(am.to_dict()), 200
