@@ -99,11 +99,17 @@ class TestDBStorage_new(unittest.TestCase):
         dicti = models.storage.get("State", stat.id)
         self.assertTrue(dicti, get_id)
 
-    def test_count(self):
+    def test_count_specific(self):
         """ Test the number of objects in storage matching """
         stat = State(name="Utah")
         models.storage.new(stat)
         models.storage.save()
-        number = len(models.storage.all("State"))
-        counter = models.storage.count("State")
-        self.assertTrue(number, counter)
+        num = len(models.storage.all("State"))
+        count = models.storage.count("State")
+        self.assertTrue(num, count)
+
+    def test_count_all(self):
+        """Test that save properly saves objects to file.json"""
+        num = len(models.storage.all())
+        count = models.storage.count()
+        self.assertEqual(num, count)
