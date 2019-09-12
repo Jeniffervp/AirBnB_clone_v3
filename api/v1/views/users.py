@@ -46,8 +46,10 @@ def post_user():
     if not request.get_json():
         return jsonify({"error": "Not a JSON"}), 400
     req = request.get_json()
-    if "name" not in req:
-        return jsonify({"error": "Missing name"}), 400
+    if "email" not in req:
+        return jsonify({"error": "Missing email"}), 400
+    if "password" not in req:
+        return jsonify({"error": "Missing password"}), 400
     us = User(**req)
     us.save()
     return jsonify(us.to_dict()), 201
@@ -64,7 +66,7 @@ def put_user(user_id):
         return jsonify({"error": "Not a JSON"}), 400
 
     req = request.get_json()
-    ign = ["id", "user_id", "created_at", "updated_at"]
+    ign = ["id", "email", "created_at", "updated_at"]
     for k, v in req.items():
         if k not in ign:
             setattr(us, k, v)
