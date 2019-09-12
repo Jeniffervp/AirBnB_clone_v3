@@ -23,8 +23,7 @@ def user_id(user_id=None):
     us = storage.get("User", user_id)
     if us is None:
         abort(404)
-    my_dict.append(us.to_dict())
-    return jsonify(my_dict[0])
+    return jsonify(us.to_dict())
 
 
 @app_views.route("/users/<user_id>", methods=['DELETE'])
@@ -43,7 +42,7 @@ def del_user(user_id):
 @app_views.route("/users", methods=['POST'])
 def post_user():
     """ update user """
-    if not request.get_json:
+    if not request.is_json:
         return jsonify({"error": "Not a JSON"}), 400
     req = request.get_json()
     if "email" not in req:
