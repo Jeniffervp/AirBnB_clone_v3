@@ -15,6 +15,7 @@ The console is the first segment of the AirBnB project at Holberton School that 
 * [Usage](#usage)
 * [Examples of use](#examples-of-use)
 * [Bugs](#bugs)
+* [Improvements] (#improvements)
 * [Authors](#authors)
 * [License](#license)
 
@@ -153,10 +154,44 @@ EOF  all  create  destroy  help  quit  show  update
 ## Bugs
 No known bugs at this time. 
 
+## Improvements
+
+[file_storage.py](/models/engine/file_storage.py) - serializes instances to a JSON file & deserializes back to instances
+* `def get(self, cls, id)` - Returns the object based on the class name and its ID, or None if not found
+* `def count(self, cls=None)` - Returns the number of objects in storage matching the given class name. If no name is passed, returns the count of all objects in storage.
+
+
+[db_storage.py](/models/engine/db_storage.py) - serializes instances to a a database & deserializes back to instances
+* `def get(self, cls, id)` - Returns the object based on the class name and its ID, or None if not found
+* `def count(self, cls=None)` - Returns the number of objects in storage matching the given class name. If no name is passed, returns the count of all objects in storage.
+
+[index.py](api/v1/views/index.py) - Allow the count of a class or all classes
+* `def  stats()` - retrieves the number of each objects by type
+* `def json_status()` - returns a JSON: status: OK
+
+[app.py](api/v1/app.py) - set up of the Flask instance
+* `def  teardown(err)` - closes storage
+* `def pagenotfound(e)` - handle error 404
+
+[states.py](api/v1/views/states.py) - view for State objects that handles all default RestFul API actions
+* `def state_retrieve(state_id=None)` - Retrieves the list of all State Objects if state_id=None or Retrieves the State Object with the id = state_id 
+* `def delet_State(stte_id=None)` - Deletes a State Object
+* `def body_request()` - Creates a State Object
+* `def put_state(state_id=None)` - Updates a State Object
+
+  The previous applies for the following files:
+* [amenity.py](api/v1/views/amenity.py)
+* [city.py](api/v1/views/city.py)
+* [place.py](api/v1/views/place.py)
+* [review.py](api/v1/views/review.py)
+* [user.py](api/v1/views/user.py)
+
 ## Authors
 Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
 Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
+Jeniffer Vanegas - [Github](https://github.com/jeniffervp) / [Twitter](https://twitter.com/jeniffervaneg)  
+Jaiber Ramirez - [Github](https://github.com/jaibers) / [Twitter](https://twitter.com/Jaiber11)
 
 Second part of Airbnb: Joann Vuong
 ## License
-Public Domain. No copy write protection. 
+Public Domain. No copy write protection.
