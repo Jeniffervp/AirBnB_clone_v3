@@ -27,7 +27,7 @@ def place_by_state(city_id=None):
 
 @app_views.route("/places/<place_id>", methods=['GET'])
 def place(place_id):
-    """ get an specific place by his id """
+    """ getttter an specific place by his id """
     my_dict = []
     pc = {}
     pc = storage.get("Place", place_id)
