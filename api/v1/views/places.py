@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Placex objects that handles all default RestFul API actions """
+""" Place objects that handles all default RestFul API actions """
 from api.v1.views import app_views
 from flask import Blueprint, Flask, jsonify, abort, request
 from models import storage
