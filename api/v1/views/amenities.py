@@ -12,7 +12,7 @@ import json
 @app_views.route("/amenities")
 @app_views.route("/amenities/<amenity_id>", methods=['GET'])
 def amenity_id(amenity_id=None):
-    """ get amenities """
+    """ getttter amenities """
     my_dict = []
     am = {}
     if amenity_id is None:
